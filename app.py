@@ -13,11 +13,12 @@ async def add_no_cache_header(request: Request, call_next):
     response.headers["Cache-Control"] = "no-cache"
     return response
 
+
 @app.get("/")
-async def root():
+def root():
     return {"message": "Hello World"}
 
 
 @app.get("/hello/{name}")
-async def say_hello(name: str):
+def say_hello(name: str):
     return {"message": f"Hello {name}"}
