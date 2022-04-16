@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Request
 
-app = FastAPI()
+# FastAPI 对象
+app: FastAPI = FastAPI()
 
 
 # 创建 Serverless 函数
@@ -11,6 +12,7 @@ async def add_no_cache_header(request: Request, call_next):
     return response
 
 
+# 首页
 @app.get("/")
 async def index():
     return {"message": "Hello World"}
