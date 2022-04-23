@@ -10,7 +10,7 @@
     <option name="TEMPLATE_CONFIGURATION" value="Jinja2" />
     <option name="TEMPLATE_FOLDERS">
       <list>
-        <option value="$MODULE_DIR$/__pages__" />
+        <option value="$MODULE_DIR$/pages" />
       </list>
     </option>
   </component>

@@ -37,7 +37,7 @@ router: APIRouter = APIRouter()
 
 
 # 模板对象
-pages: Jinja2Templates = Jinja2Templates(directory="__pages__")
+pages: Jinja2Templates = Jinja2Templates(directory="pages")
 
 
 # 创建 Serverless 函数
