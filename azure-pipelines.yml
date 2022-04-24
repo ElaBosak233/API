@@ -8,7 +8,7 @@ trigger:
 
 variables:
   # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: '92b68acf-bcf0-4b83-8e27-65107ecaa9ca'
+  azureSubscription: '640b685d-400e-4820-a22d-7c933f72e7c4'
 
   # Function app name
   functionAppName: 'api-e23'
