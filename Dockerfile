@@ -2,7 +2,7 @@
 # https://hub.docker.com/_/python
 FROM python:3.8-slim
 # 将本地代码拷贝到容器内
-ENV APP_HOME /app
+ENV APP_HOME /
 WORKDIR $APP_HOME
 COPY . ./
 # 安装依赖
