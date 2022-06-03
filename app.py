@@ -1,8 +1,9 @@
 import uvicorn
-from fastapi import FastAPI, Request, APIRouter
+from fastapi import FastAPI, Request, APIRouter, applications
 from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from fastapi.openapi.docs import get_swagger_ui_html
 from mcbbs.main import router as mcbbs_router
 
 __VERSION__ = "1.0.0 alpha"
@@ -31,6 +32,17 @@ app: FastAPI = FastAPI(
     redoc_url=None
 )
 
+#重写 Swagger UI 的 CDN
+def swagger_monkey_patch(*args, **kwargs):
+    return get_swagger_ui_html(
+        *args,
+        **kwargs,
+        swagger_js_url="https://fastly.jsdelivr.net/npm/swagger-ui-dist@4/swagger-ui-bundle.js",
+        swagger_css_url="https://fastly.jsdelivr.net/npm/swagger-ui-dist@4/swagger-ui.css",
+        swagger_favicon_url="https://e23.dev/fav.svg"
+    )
+applications.get_swagger_ui_html = swagger_monkey_patch
+
 # 路由对象
 router: APIRouter = APIRouter()
 
@@ -58,7 +70,7 @@ async def say_hello(name: str):
 
 
 # 挂载静态文件
-app.mount("/statics", StaticFiles(directory="./statics"), name="statics")
+app.mount("/static", StaticFiles(directory="./static"), name="static")
 
 
 # 挂载路由
