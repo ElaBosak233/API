@@ -4,3 +4,5 @@ __pycache__
 .history
 .env
 .venv
+.python_packages
+.vscode
