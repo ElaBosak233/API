@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.openapi.docs import get_swagger_ui_html
 from mcbbs import router as mcbbs_router
+from elink import router as elink_router
 
 __VERSION__ = "1.0.0 alpha"
 __TITLE__ = "Ela's API"
@@ -79,6 +80,7 @@ app.mount("/static", StaticFiles(directory="./static"), name="static")
 # 挂载路由
 app.include_router(router)  # 挂载主路由
 app.include_router(mcbbs_router, prefix="/mcbbs", tags=["MCBBS 我的世界中文论坛"])  # 挂载 MCBBS 路由
+app.include_router(elink_router, prefix="/elink", tags=["eLink API"])  # 挂在 eLink 路由
 
 # 注册跨域中间件
 app.add_middleware(
