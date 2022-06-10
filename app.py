@@ -71,7 +71,7 @@ async def index(request: Request):
 # 简单的问候
 @router.get("/hello/{name}")
 async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
+    return f"Hello {name}"
 
 
 # 挂载静态文件
@@ -80,7 +80,7 @@ app.mount("/static", StaticFiles(directory="./static"), name="static")
 # 挂载路由
 app.include_router(router)  # 挂载主路由
 app.include_router(mcbbs_router, prefix="/mcbbs", tags=["MCBBS 我的世界中文论坛"])  # 挂载 MCBBS 路由
-app.include_router(elink_router, prefix="/elink", tags=["eLink API"])  # 挂在 eLink 路由
+app.include_router(elink_router, prefix="/elink", tags=["eLink API"])  # 挂载 eLink 路由
 
 # 注册跨域中间件
 app.add_middleware(

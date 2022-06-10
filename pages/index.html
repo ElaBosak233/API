@@ -2,7 +2,24 @@
 {% block title %}首页{% endblock %}
 {% block head %}
     {{ super() }}
+    <link rel="shortcut icon" href="https://e23.dev/fav.svg">
 {% endblock %}
 {% block content %}
-    <h1>It works!</h1>
+<section class="flex flex-col justify-center items-center min-h-screen bg-blue-100 p-32 text-center"
+    style="background-image: url('https://s3.bmp.ovh/imgs/2022/06/10/08ff5f0c9d3fe526.jpg'); background-size: cover">
+
+    <h1 class="text-7xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-green-800">
+        <img src="https://e23.dev/fav.svg" alt="" width="50" height="50" style="float:left;" />
+        It works!
+    </h1>
+
+    <p class="text-gray-700 text-lg mb-8 font-bold">阅读文档，以你喜欢的方式使用埃拉的接口吧~</p>
+
+    <div class="space-x-2">
+        <a href="/docs" class="py-3 px-8 bg-blue-400 hover:bg-blue-300 text-blue-900 rounded-lg hover:shadow-xl transition duration-300">
+            阅读文档
+        </a>
+    </div>
+
+</section>
 {% endblock %}
