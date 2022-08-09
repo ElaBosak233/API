@@ -24,7 +24,7 @@ async def stats(uid: int) -> Dict[str, str]:
         headers=headers
     )
     soup: BeautifulSoup = BeautifulSoup(res.text, "html5lib")
-    for i, v in enumerate(soup.find_all("li")[-10: -1]):
+    for i, v in enumerate(soup.find_all("li")[-10::]):
         v_soup: BeautifulSoup = BeautifulSoup(str(v), "html5lib")
         result[v_soup.find("em").text] = v_soup.find("li").contents[1].text
     return result
