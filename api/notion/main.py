@@ -1,3 +1,5 @@
+import os
+
 from fastapi import APIRouter
 from notion_client import Client
 from fastapi.responses import HTMLResponse
@@ -5,7 +7,7 @@ from fastapi.responses import HTMLResponse
 from .utils.HtmlParser import HtmlParser
 
 router: APIRouter = APIRouter()
-notion: Client = Client(auth="secret_5B7sxQds4lc20jJ7EEiCNvui4PebEtUkZYVhgNIOJ3i")
+notion: Client = Client(auth=os.environ.get("NOTION_API_KEY"))
 
 
 @router.get("/")
