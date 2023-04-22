@@ -1,13 +1,11 @@
 import os
+from typing import Optional
 
 from fastapi import APIRouter
-from notion_client import Client
 from fastapi.responses import HTMLResponse
-
-from .utils.HtmlParser import HtmlParser
+from notion_lab.converter import HtmlCvt, MDCvt
 
 router: APIRouter = APIRouter()
-notion: Client = Client(auth=os.environ.get("NOTION_API_KEY"))
 
 
 @router.get("/")
@@ -17,7 +15,12 @@ async def index():
 
 # 以 html 的形式输出文章所有内容
 @router.get("/{page_id}", response_class=HTMLResponse)
-async def stats(page_id: str):
-    children = notion.blocks.children.list(block_id=page_id)
-    r = HtmlParser(children).export()
+async def stats(page_id: str, fmt: Optional[str] = "html"):
+    r = ""
+    if fmt == "html":
+        cvt = HtmlCvt(api_token=os.environ["NOTION_API_TOKEN"], block_id=page_id, is_page=True)
+        r = cvt.convert()
+    elif fmt == "md":
+        cvt = MDCvt(api_token=os.environ["NOTION_API_TOKEN"], block_id=page_id, is_page=True)
+        r = cvt.convert()
     return r
