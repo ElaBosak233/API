@@ -14,12 +14,7 @@ headers: dict = {
 }
 
 
-@router.get("/")
-async def index() -> str:
-    return "MCBBS USER API"
-
-
-@router.get("/stats/{uid}")
+@router.get("/{uid}/stats")
 async def stats(uid: int) -> Dict[str, str]:
     result: Dict[str, str] = {}
     res: requests.Response = requests.get(

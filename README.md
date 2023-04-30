@@ -18,6 +18,10 @@ This is just a simple API, nothing else...
 - [x] Self Notion converter base on [NotionLab](https://github.com/ElaBosak233/NotionLab)
 - [ ] more...
 
+## Deploy with Vercel
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FElaBosak233%2Fapi.git&env=NOTION_API_TOKEN&project-name=e23api&repository-name=e23api)
+
 ## License
 
 Based on GNU GENERAL PUBLIC LICENSE v3.
