@@ -1,11 +1,23 @@
-# api.e23.dev
+# Application Programming Interface
 
-> 有一说一，如果把所有的东西全部混杂在一个 [universe](https://github.com/ElaBosak233/universe) 里面，显然是不合适的。
-> 毕竟东西一多，就会乱成一锅粥 QAQ。所以，**api** 回来啦~
+<div align="center">
 
-## 基本介绍
+![](https://socialify.git.ci/elabosak233/api/image?font=Bitter&forks=1&issues=1&language=1&name=1&owner=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Light)
 
-顾名思义，这只是个 api，但是我这次采用了 FastAPI 作为框架哟！这么一来，API 文档的事情……是不是更好解决了呢？
+Build with ♥, Made by **ElaBosak233**.
 
-讲真，自从发现有 FastAPI 后，做这样的 REST 服务我不太喜欢再用 Flask 了，虽然我也不知道这是什么心理……
+</div>
 
+## Introduction
+
+This is just a simple API, nothing else...
+
+## Features
+
+- [x] MCBBS profile analysis
+- [x] Self Notion converter base on [NotionLab](https://github.com/ElaBosak233/NotionLab)
+- [ ] more...
+
+## License
+
+Based on GNU GENERAL PUBLIC LICENSE v3.
