@@ -10,5 +10,5 @@ notion: Client = Client(auth=os.environ["NOTION_API_TOKEN"])
 
 
 @router.get("/retrieve_all/{b_id}")
-async def retrieve_all(b_id: str, response_class=JSONResponse):
+async def retrieve_all(b_id: str):
     return notion.blocks.children.list(b_id)["results"]

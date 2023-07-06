@@ -2,7 +2,6 @@ import os
 
 from fastapi import APIRouter
 from .block import router as block_router
-from fastapi.responses import JSONResponse
 from notion_lab.database import DB
 
 router: APIRouter = APIRouter()
@@ -28,7 +27,7 @@ async def index():
 
 
 # 获取数据库内容
-@router.get("/database/{database_id}", response_class=JSONResponse)
+@router.get("/database/{database_id}")
 def database(database_id: str):
     r = []
     db = DB(api_token=os.environ["NOTION_API_TOKEN"], database_id=database_id)

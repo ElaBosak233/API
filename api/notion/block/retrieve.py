@@ -10,5 +10,5 @@ notion: Client = Client(auth=os.environ["NOTION_API_TOKEN"])
 
 
 @router.get("/retrieve/{b_id}")
-async def retrieve(b_id: str, response_class=JSONResponse):
+async def retrieve(b_id: str):
     return notion.blocks.retrieve(b_id)

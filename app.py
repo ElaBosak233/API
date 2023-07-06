@@ -1,11 +1,11 @@
 import codecs
 
 import uvicorn
-from fastapi import FastAPI, Request, APIRouter, applications
+from fastapi import FastAPI, Request, APIRouter
+from fastapi.openapi.utils import get_openapi
 from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.openapi.docs import get_swagger_ui_html
 from api.mcbbs import router as mcbbs_router
 from api.notion import router as notion_router
 
@@ -14,26 +14,27 @@ __TITLE__ = "埃拉の应用程序接口"
 __DESCRIPTION__ = codecs.open("README.md", "r", "utf-8").read()
 
 # FastAPI 对象
-app: FastAPI = FastAPI(
-    title=__TITLE__,
-    version=__VERSION__,
-    description=__DESCRIPTION__,
-    redoc_url=None
-)
+app: FastAPI = FastAPI()
 
 
-# 重写 Swagger UI 的 CDN
-def swagger_monkey_patch(*args, **kwargs):
-    return get_swagger_ui_html(
-        *args,
-        **kwargs,
-        swagger_js_url="/static/swagger-ui/swagger-ui-bundle.js",
-        swagger_css_url="/static/swagger-ui/swagger-ui.css",
-        swagger_favicon_url="https://e23.dev/fav.svg"
+def custom_openapi():
+    if app.openapi_schema:
+        return app.openapi_schema
+    openapi_schema = get_openapi(
+        title=__TITLE__,
+        version=__VERSION__,
+        summary="This is a very custom OpenAPI schema",
+        description=__DESCRIPTION__,
+        routes=app.routes
     )
+    openapi_schema["info"]["x-logo"] = {
+        "url": "https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png"
+    }
+    app.openapi_schema = openapi_schema
+    return app.openapi_schema
 
 
-applications.get_swagger_ui_html = swagger_monkey_patch
+app.openapi = custom_openapi
 
 # 路由对象
 router: APIRouter = APIRouter()
